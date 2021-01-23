@@ -1,0 +1,41 @@
+kind: List
+apiVersion: v1
+items:
+  - kind: ImageStream
+    apiVersion: image.openshift.io/v1
+    metadata:
+      name: tensorflow-notebook
+      labels:
+        build: tensorflow-notebook
+    spec:
+      lookupPolicy:
+        local: true
+  - kind: BuildConfig
+    apiVersion: build.openshift.io/v1
+    metadata:
+      name: tensorflow-notebook
+      labels:
+        build: tensorflow-notebook
+    spec:
+      triggers:
+        - type: ConfigChange
+        - type: ImageChange
+      source:
+        type: Git
+        git:
+          uri: https://github.com/k9nd0/jupyter-notebooks.git
+          ref: develop
+        contextDir: tensorflow-notebook
+      strategy:
+        type: Source
+        sourceStrategy:
+          from:
+            kind: DockerImage
+            name: registry.access.redhat.com/ubi8/python-38
+      output:
+        to:
+          kind: ImageStreamTag
+          name: tensorflow-notebook
+      resources:
+        limits:
+          memory: 1Gi

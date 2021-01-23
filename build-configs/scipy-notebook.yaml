@@ -4,18 +4,18 @@ items:
   - kind: ImageStream
     apiVersion: image.openshift.io/v1
     metadata:
-      name: s2i-tensorflow-notebook
+      name: scipy-notebook
       labels:
-        build: s2i-tensorflow-notebook
+        build: scipy-notebook
     spec:
       lookupPolicy:
         local: true
   - kind: BuildConfig
     apiVersion: build.openshift.io/v1
     metadata:
-      name: s2i-tensorflow-notebook-py36
+      name: scipy-notebook
       labels:
-        build: s2i-tensorflow-notebook
+        build: scipy-notebook
     spec:
       triggers:
         - type: ConfigChange
@@ -23,19 +23,19 @@ items:
       source:
         type: Git
         git:
-          uri: 'https://github.com/jupyter-on-openshift/jupyter-notebooks'
-          ref: 2.2.2
-        contextDir: tensorflow-notebook
+          uri: https://github.com/k9nd0/jupyter-notebooks.git
+          ref: develop
+        contextDir: scipy-notebook
       strategy:
         type: Source
         sourceStrategy:
           from:
-            kind: ImageStreamTag
-            name: 's2i-minimal-notebook:3.6'
+            kind: DockerImage
+            name: registry.access.redhat.com/ubi8/python-38
       output:
         to:
           kind: ImageStreamTag
-          name: 's2i-tensorflow-notebook:3.6'
+          name: scipy-notebook
       resources:
         limits:
           memory: 1Gi

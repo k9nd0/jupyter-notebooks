@@ -4,18 +4,18 @@ items:
   - kind: ImageStream
     apiVersion: image.openshift.io/v1
     metadata:
-      name: s2i-scipy-notebook
+      name: minimal-notebook
       labels:
-        build: s2i-scipy-notebook
+        build: minimal-notebook
     spec:
       lookupPolicy:
         local: true
   - kind: BuildConfig
     apiVersion: build.openshift.io/v1
     metadata:
-      name: s2i-scipy-notebook-py36
+      name: minimal-notebook
       labels:
-        build: s2i-scipy-notebook
+        build: minimal-notebook
     spec:
       triggers:
         - type: ConfigChange
@@ -23,19 +23,19 @@ items:
       source:
         type: Git
         git:
-          uri: 'https://github.com/jupyter-on-openshift/jupyter-notebooks'
-          ref: 2.2.2
-        contextDir: scipy-notebook
+          uri: https://github.com/k9nd0/jupyter-notebooks.git
+          ref: develop
+        contextDir: minimal-notebook
       strategy:
         type: Source
         sourceStrategy:
           from:
-            kind: ImageStreamTag
-            name: 's2i-minimal-notebook:3.6'
+            kind: DockerImage
+            name: registry.access.redhat.com/ubi8/python-38
       output:
         to:
           kind: ImageStreamTag
-          name: 's2i-scipy-notebook:3.6'
+          name: minimal-notebook
       resources:
         limits:
           memory: 1Gi
