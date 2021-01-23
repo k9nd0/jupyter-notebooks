@@ -12,11 +12,11 @@ pip install -U pip setuptools wheel
 
 # Install mod_wsgi for use in optional webdav support.
 
-pip install 'mod_wsgi==4.6.5'
+pip install mod_wsgi
 
 # Install supervisord for managing multiple applications.
 
-pip install 'supervisor==4.0.2'
+pip install supervisor
 
 # Install base packages needed for running Jupyter Notebooks. 
 
