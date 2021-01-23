@@ -6,6 +6,8 @@ set -eo pipefail
 # INFO: Install everything that's required for Jupyter notebooks here.
 ########################################################################
 
+sudo dnf update
+
 # Ensure we are using the latest pip and wheel packages.
 
 pip install -U pip setuptools wheel
