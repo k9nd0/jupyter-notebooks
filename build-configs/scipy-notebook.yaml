@@ -35,7 +35,7 @@ items:
       output:
         to:
           kind: ImageStreamTag
-          name: scipy-notebook
+          name: scipy-notebook:latest
       resources:
         limits:
           memory: 1Gi

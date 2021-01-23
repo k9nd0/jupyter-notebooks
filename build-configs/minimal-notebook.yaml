@@ -35,7 +35,7 @@ items:
       output:
         to:
           kind: ImageStreamTag
-          name: minimal-notebook
+          name: minimal-notebook:latest
       resources:
         limits:
           memory: 1Gi

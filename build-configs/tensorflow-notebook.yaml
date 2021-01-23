@@ -35,7 +35,7 @@ items:
       output:
         to:
           kind: ImageStreamTag
-          name: tensorflow-notebook
+          name: tensorflow-notebook:latest
       resources:
         limits:
           memory: 1Gi
