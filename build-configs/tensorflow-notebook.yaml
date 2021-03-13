@@ -30,12 +30,12 @@ items:
         type: Source
         sourceStrategy:
           from:
-            kind: DockerImage
-            name: registry.access.redhat.com/ubi8/python-38
+            kind: ImageStreamTag
+            name: minimal-notebook:latest
       output:
         to:
           kind: ImageStreamTag
           name: tensorflow-notebook:latest
       resources:
         limits:
-          memory: 1Gi
+          memory: 2Gi
